@@ -1,0 +1,25 @@
+# Virtual Environment
+venv/
+*.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# SQLite Database
+users.db
+instance/users.db
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Environment files (if you ever use .env for secrets)
+.env

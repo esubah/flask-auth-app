@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">User Dashboard</h1>
+    <div class="col-lg-6 mx-auto">
+        {% if session['username'] %}
+            <p class="lead mb-4">Welcome back, <strong class="text-primary">{{ session['username'] }}</strong>!</p>
+            <p>You are successfully logged in.</p>
+            <p>Your User ID is: {{ session['user_id'] }}</p>
+        {% else %}
+            <p class="lead mb-4">Welcome to the Dashboard!</p>
+            <p>It seems your session information is missing, but you reached this page.</p>
+        {% endif %}
+        <p>This is a protected area only for logged-in users.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="{{ url_for('logout') }}" class="btn btn-danger btn-lg px-4">Logout</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

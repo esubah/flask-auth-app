@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card mt-4">
+            <div class="card-header">
+                <h2 class="mb-0">Login to Your Account</h2>
+            </div>
+            <div class="card-body">
+                {# The 'action' attribute will include the 'next' parameter if present #}
+                <form method="POST" action="{{ url_for('login', next=request.args.get('next')) if request.args.get('next') else url_for('login') }}" novalidate>
+                    {{ form.hidden_tag() }} {# CSRF token #}
+
+                    <div class="mb-3">
+                        {{ form.email.label(class="form-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control is-invalid", placeholder="Enter your email") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control", placeholder="Enter your email") }}
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.password.label(class="form-label") }}
+                        {% if form.password.errors %}
+                            {{ form.password(class="form-control is-invalid", placeholder="Enter your password") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.password.errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.password(class="form-control", placeholder="Enter your password") }}
+                        {% endif %}
+                    </div>
+
+                    {# We could add a "Remember Me" checkbox here later with Flask-Login #}
+                    {# <div class="mb-3 form-check">
+                        {{ form.remember(class="form-check-input") }}
+                        {{ form.remember.label(class="form-check-label") }}
+                    </div> #}
+
+                    <div class="d-grid">
+                        {{ form.submit(class="btn btn-primary btn-block") }}
+                    </div>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <small class="text-muted">
+                    Need an account? <a href="{{ url_for('register') }}">Register Here</a>
+                </small>
+                {# Add link for password reset in a real application #}
+                {# <br><a href="#">Forgot Password?</a> #}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
