@@ -23,3 +23,6 @@ Thumbs.db
 
 # Environment files (if you ever use .env for secrets)
 .env
+
+# backup app.py before flask user authentication integration
+app_old.py
